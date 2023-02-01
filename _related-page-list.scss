@@ -1,0 +1,363 @@
+// 
+// 関連ページリストの設定
+// 
+
+
+/* ページ情報を常時表示する */
+/* & 関連ページリストを右側に持ってくる */
+@media (min-width: 768px) and (min-height: 768px) {
+    /* # ページ情報を常時表示する */
+    .app > .row-flex {
+        /* ページの上端とページ情報の上端を合わせる */
+        padding-top: var(--page-padding-top);
+    }
+    div.page {
+        /* ページ上部に元々設定されていたpaddingを削除する */
+        padding-top: 0;
+        /* 最大幅を設定しないと、中の文章が外枠を突き破れてしまう */
+        max-width: var(--page-max-width);
+        /* 下に余白を作ってスクロール可能な幅を増やす */
+        margin-bottom: calc(100vh - var(--navbar-max-height) - 4em - 32px);
+    }
+    div.page-menu {
+        /* メニューボタンをグリッド状にする */
+        display: grid;
+        grid-auto-flow: row;
+        top: calc(var(--navbar-min-height) + 5px);
+        width: var(--page-info-width);
+        max-height: var(--page-menu-height);
+        border-radius: var(--page-menu-border-radius);
+        background-color: var(--page-menu-bg);
+        // backdrop-filter: blur(1.5px);
+        box-shadow: 0px 0px 9px 0px black;
+    }
+    .page-menu {
+        & > .dropdown:nth-child(1) {
+            /* ページ情報の領域 */
+            grid-column: 1 / calc(var(--page-menu-columns) + 1);
+            width: 100%;
+            height: fit-content;
+            max-height: var(--page-info-height);
+            background-color: var(--page-info-area-bg);
+            border-radius: var(--page-menu-border-radius) var(--page-menu-border-radius) 0 0;
+        }
+        [aria-labelledby="page-info-menu"] {
+            /* ページ情報を常時表示する */
+            position: relative;
+            display: flex;
+            inset: auto;
+            width: var(--page-info-width);
+            max-height: var(--page-info-height);
+            border-radius: var(--page-menu-border-radius) var(--page-menu-border-radius) 0 0;
+            box-shadow: none;
+            z-index: auto;
+            & > :nth-child(2) {
+                /* ページ作成者の情報 */
+                /* 個人プロジェクトでは不要なので非表示にする */
+                display: none;
+            }
+        }
+        & > .dropdown {
+            /* ページメニューのボタン配置を中央揃えに */
+            align-self: center;
+            justify-self: center;
+        }
+        & > .random-jump-button {
+            /* ランダムボタンは個別に中央揃えにしないといけない */
+            margin: auto;
+        }
+        & > .dropdown:nth-child(2) {
+            /* ページメニューのボタンを2行目から配置する */
+            grid-row-start: 2;
+        }
+        .dropdown:not(:first-child) ul.dropdown-menu-right {
+            /* ボタンを押した時のメニューの位置 */
+            top: 50px;
+            right: 0;
+        }
+    }
+    #page-info-menu {
+        /* ページ情報のボタンを非表示に */
+        display: none;
+    }
+    div.row-flex {
+        /* ページを左寄せにする */
+        margin: 0 auto;
+        padding: 0 8px;
+        max-width: 1200px;
+        justify-content: flex-start;
+    }
+    div.col-page {
+        /* ページ領域の幅 */
+        width: calc(100% - 20px - var(--page-info-width));
+    }
+    
+    /* # 関連ページリストを右側に */
+    .page-wrapper {
+        /* ページとリンクをまとめているやつ */
+        display: flex;
+        flex-direction: row;
+    }
+    div.drag-and-drop-enter {
+        /* ページ本体が入っている要素 */
+        flex-basis: 100%;
+    }
+    div.related-page-list {
+        /* 関連ページリスト */
+        position: relative;
+        margin-top: calc(var(--page-menu-height) + .5em);
+        margin-right: -100%;
+        margin-left: 10px;
+        width: var(--page-info-width);
+        ul.grid {
+            /* marginに負の値を設定されるのを防止する */
+            margin: calc(var(--relation-label-font-size) * .5) 0;
+        }
+    }
+
+    // 関連ページリスト
+    .related-page-list {
+        div.toolbar {
+            /* 関連ページリストのツールバー */
+            margin-top: 3px;
+            flex-direction: column;
+            .related-page-sort-menu {
+                /* ソートメニューを中央揃えに */
+                display: flex;
+                justify-content: center;
+                .tool-btn {
+                    padding: 3px 10px 3px;
+                }
+            }
+            .related-page-list-search {
+                /* 関連ページリストの検索ボックス */
+                line-height: 2em;
+                border-radius: var(--page-menu-border-radius);
+                background-color: var(--search-form-bg);
+                i.fa {
+                    /* 検索ボックスのアイコンの位置調整 */
+                    margin-left: 3px;
+                    margin-right: 2px;
+                    width: var(--relation-label-icon-size);
+                    height: var(--relation-label-icon-size);
+                    line-height: var(--relation-label-icon-size);
+                    text-align: center;
+                }
+                input {
+                    /* 検索ボックスの入力文字の表示幅をギリギリまで伸ばす */
+                    width: calc(
+                        var(--page-info-width)
+                        - var(--relation-label-icon-size)
+                        - 3px
+                        - 2px
+                    );
+                }
+            }
+        }
+        .grid {
+            li.relation-label {
+                /* 関連ページリストのラベル領域 */
+                width: 100%;
+                height: auto;
+                margin: 0 0 10px;
+                .arrow {
+                    /* 吹き出しの矢印は不要なので消す */
+                    display: none;
+                }
+                a {
+                    /* 関連ページリストのラベルリンク */
+                    padding: 0 calc((var(--relation-label-margin-left) * 2) + var(--relation-label-icon-size));
+                    border-bottom: solid 1px var(--relation-label-text);
+                    display: flex;
+                    width: 100%;
+                    border-radius: 0;
+                    flex-direction: row-reverse;
+                    justify-content: center;
+                    color: var(--relation-label-text);
+                    background-color: transparent;
+                }
+                a .title {
+                    /* ラベル文字 */
+                    font-family: var(--label-fonts);
+                    font-size: var(--relation-label-font-size);
+                    line-height: 1.5em;
+                }
+                a .icon-lg {
+                    /* ラベルの鎖アイコン  */
+                    position: absolute;
+                    left: 3px;
+                    margin: 0;
+                    font-size: var(--relation-label-icon-size);
+                    width: 1em;
+                    height: 1.5em;
+                    line-height: 1.5em;
+                    vertical-align: middle;
+                }
+            }
+            & > :not(.relation-label) {
+                /* 関連ページリストのラベル以外の要素 */
+                margin: 0;
+                margin-bottom: .5em;
+                padding: 0 .5em;
+                width: var(--page-info-width);
+                height: 6em;
+            }
+            .page-list-item {
+                /* 関連ページリストのページリンク領域 */
+                height: 6em;
+                a {
+                    /* 関連ページリストのページリンク本体 */
+                    width: auto;
+                    background-color: var(--relation-page-bg);
+                    border-radius: 0 0 3px 3px;
+                    box-shadow: none;
+                }
+                .header {
+                    /* ページリンクのタイトル領域 */
+                    padding-bottom: 3px;
+                    border-top: none;
+                    border-bottom: 1.5px solid var(--relation-page-border-color);
+                    z-index: 1; /* アイコンより上にする */
+                }
+                .description {
+                    /* ページリンクの書き出し文 */
+                    padding-top: 3px;
+                }
+                .icon {
+                    /* ページリンクのアイコン */
+                    position: absolute;
+                    padding: 1px;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    align-items: center;
+                    opacity: .5;
+                }
+                .icon::before {
+                    /* アイコン画像をグラデーションで透過（風に）しようかと思ったけれどやめた */
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    /* content: ""; */
+                    background: linear-gradient(273deg, transparent 0 15%, var(--body-bg) 75% 100%);
+                }
+                .icon > img {
+                    /* ページリンクのアイコン画像 */
+                    margin: 0;
+                    width: 75%;
+                    height: fit-content;
+                    vertical-align: middle;
+                }
+            }
+            .ellipsis {
+                /* 関連ページリストの3点ボタン */
+                margin: 0;
+                margin-bottom: .5em;
+                padding: 0 .5em;
+                width: var(--page-info-width);
+                height: 3em;
+                a {
+                    padding: 0;
+                }   
+            }
+            .expand-stack {
+                /* 関連ページスタック */
+                height: 4em;
+                background-color: transparent;
+                a {
+                    background-color: var(--relation-page-bg);
+                    border-radius: 0 0 3px 3px;
+                }
+            }
+            .splitter.splitter {
+                /* 底に沈んでいる区切り線 */
+                /* プロパティのいじり方でどうとでもなるので消す */
+                display: none;
+            }
+        }
+
+        // グループホバー時の設定
+        & > div .grid:hover {
+            .page-list-item a {
+                &,
+                &:hover {
+                    box-shadow: var(--card-box-hover-shadow);
+                }
+            }
+        }
+
+        // 1 hop linkの個別設定
+        & > .links-1-hop {
+            .grid:hover {
+                .relation-label a > span {
+                    color: var(--relation-label-text-1);
+                    transition: background-color var(--animation-time);
+                }
+                :is(.page-list-item, .expand-stack) a {
+                    /* 1 hop linkのページリンクの背景色 */
+                    background-color: var(--relation-page-bg-1);
+                    transition: background-color var(--animation-time);
+                }
+            }
+        }
+        // External linksの個別設定
+        & > .project-links-1-hop {
+            .grid:hover {
+                .relation-label a > span {
+                    color: var(--relation-label-text-p1);
+                    transition: background-color var(--animation-time);
+                }
+                :is(.page-list-item, .expand-stack) a {
+                    /* External linksのページリンクの背景色 */
+                    background-color: var(--relation-page-bg-p1);
+                    transition: background-color var(--animation-time);
+                }
+            }
+        }
+        // 2 hop linkの個別設定
+        & > .links-2-hop {
+            .grid:hover {
+                .relation-label.relation-label a {
+                    /* 元々あった設定を打ち消す */
+                    color: var(--relation-label-text);
+                    background-color: transparent;
+                    transition: background-color var(--animation-time);
+                }
+                .relation-label a > span {
+                    color: var(--relation-label-text-2);
+                    transition: background-color var(--animation-time);
+                }
+                :is(.page-list-item, .expand-stack) a {
+                    /* 2 hop linkのページリンクの背景色 */
+                    background-color: var(--relation-page-bg-2);
+                    transition: background-color var(--animation-time);
+                }
+            }
+        }
+        // New Linksの個別設定
+        & > .empy-links,
+        & > .empty-links {
+            .grid:hover {
+                .relation-label a > span {
+                    color: var(--relation-label-text-empty);
+                    transition: background-color var(--animation-time);
+                }
+                :is(.page-list-item, .expand-stack) a {
+                    /* New Linksのページリンクの背景色 */
+                    background-color: var(--relation-page-bg-empty);
+                    transition: background-color var(--animation-time);
+                }
+            }
+        }
+        
+    }
+
+    // ページカードごとのホバー時の影設定は不要なので消す
+    .related-page-list .grid:not(:hover) li.page-list-item a:hover {
+        box-shadow: none;
+    }
+}

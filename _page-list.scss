@@ -1,0 +1,29 @@
+// 
+// ここでは主にトップページのページカードのレイアウトと、
+// スマホ版表示における関連ページリストのレイアウトを設定する
+// 
+
+.app .page-list .grid {
+    /* ページリストをグリッド化する */
+    margin: 0;
+    display: grid;
+    width: inherit;
+    max-width: var(--body-max-width);
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); // 140~154
+    .page-list-item {
+        margin: 0;
+        width: 100%;
+        a {
+            // border: 1px solid white; /*【仮】*/
+            border-radius: 2px;
+            .header {
+                border: none;
+            }
+        }
+    }
+}
+ul.grid li.page-list-item a {
+    border-radius: 0;
+    box-shadow: none;
+}
