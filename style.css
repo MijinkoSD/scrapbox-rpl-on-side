@@ -7,6 +7,7 @@
 /* 無いと見づらい */
 @import "/api/code/Mijinko/ピンしたページのスタイル/style.css";
 @import "/api/code/Mijinko/のびのびドロップダウン/style.css";
+@import '/api/code/Mijinko/インデントに縦線を表示するUserCSS/style.css';
 /* 記法関連 */
 @import "/api/code/Mijinko/見出しのデザインを変えるUserCSS/color.css";
 @import "/api/code/Mijinko/見出しのデザインを変えるUserCSS/style.css";
