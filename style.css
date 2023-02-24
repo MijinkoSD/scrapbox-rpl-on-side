@@ -191,6 +191,10 @@ nav.navbar {
   /* ドロップダウンメニュー */
   top: var(--navbar-max-height);
 }
+.navbar .col-search .dropdown > .dropdown-menu {
+  /* 検索バーの検索候補リスト */
+  top: calc(var(--navbar-max-height) - 4px);
+}
 
 /* # システムメッセージ */
 .app > .container:has(.alert.alert-info) {
@@ -300,7 +304,6 @@ nav.navbar {
     /* ページ情報の領域 */
     grid-column: 1/calc(var(--page-menu-columns) + 1);
     width: 100%;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     max-height: var(--page-info-height);
@@ -505,7 +508,6 @@ nav.navbar {
     /* ページリンクのアイコン画像 */
     margin: 0;
     width: 75%;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     vertical-align: middle;

@@ -45,6 +45,10 @@ nav.navbar {
         /* ドロップダウンメニュー */
         top: var(--navbar-max-height);
     }
+    & .col-search .dropdown > .dropdown-menu {
+        /* 検索バーの検索候補リスト */
+        top: calc(var(--navbar-max-height) - 4px);
+    }
 }
 
 /* # システムメッセージ */
