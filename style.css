@@ -385,6 +385,7 @@ nav.navbar {
     /* 関連ページリストのツールバー */
     margin-top: 3px;
     flex-direction: column;
+    height: auto;
   }
   .related-page-list div.toolbar .related-page-sort-menu {
     /* ソートメニューを中央揃えに */

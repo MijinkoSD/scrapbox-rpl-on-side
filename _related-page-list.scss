@@ -121,6 +121,7 @@
             /* 関連ページリストのツールバー */
             margin-top: 3px;
             flex-direction: column;
+            height: auto;
             .related-page-sort-menu {
                 /* ソートメニューを中央揃えに */
                 display: flex;
