@@ -1,0 +1,14 @@
+/* @use */
+@use "./_Mijinko-other_values.scss";
+@use "./_common.scss";
+@use "./_navbar.scss";
+@use "./_related-page-list.scss";
+
+// どちらか片方のみ有効にする
+@use "./page-menu-mini.scss";    // ページ情報を常時表示しない
+// @use "./page-menu.scss";   // ページ情報を常時表示する
+
+/* Noto Sans JPをダウンロードする */
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP";
+/* Font Awesome 6をダウンロードする */
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css";

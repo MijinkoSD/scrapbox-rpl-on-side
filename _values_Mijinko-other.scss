@@ -1,0 +1,100 @@
+/* ページタイトル周りのレイアウトを調整する */
+body, *::after, *::before {
+    /* # 共通設定 */
+    /* 全体の最大幅 */
+    --body-max-width: 1200px; /*【値変更非対応】*/
+    /* ページの横padding */
+    --body-padding-horizon: 8px; /*【値変更非対応】*/
+    /* ページ内のフォントサイズ */
+    --page-font-size: 15px;
+    /* デフォルトで設定されているフォント
+     * Font Awesomeを常時使えるようにするUserCSSから流用したもの */
+    --base-fonts: "Roboto",Helvetica,Arial,"Hiragino Sans","Font Awesome 6 Free","Font Awesome 5 Brands","AppIcons",sans-serif;
+    /* ページタイトルとかに使っているフォント */
+    --label-fonts: "Noto Sans JP", var(--base-fonts);
+    --animation-time: .3s;
+    
+    /* # ナビゲーションバー */
+    /* 区切り線の長さ */
+    --navbar-separator-width: 0px;
+    /* ナビゲーションバーの横margin */
+    --navbar-margin-horizon: 8px;
+    /* ナビゲーションバーの最小縦幅 */
+    --navbar-min-height: calc(var(--navbar-row-1-height) + var(--navbar-row-2-height));
+    /* ナビゲーションバーの最大縦幅 */
+    --navbar-max-height: var(--navbar-min-height); /* 変動しないのでminと同じ値 */
+    /* ナビゲーションバーの1行目の縦幅 */
+    --navbar-row-1-height: calc(40px + var(--navbar-separator-width)); ; /* デフォルト：40px */
+    --navbar-row-2-height: 0px;
+    
+    /* more page of の文字色 */
+    --tool-color: hsl(0deg 0% 100% / 71%);
+    
+    /* # ページメニュー */
+    --page-menu-icon-size: 46px;
+    
+    /* # ページ内部 */
+    /* ページの横padding
+     * テロメアの位置調整も必要なので変数で管理する */
+    --page-padding-horizon: 30px; /* 元々は42px */
+    /* ページの上padding */
+    --page-padding-top: 21px; /* 元々は42px */
+    /* ページタイトルの左padding */
+    --line-title-margin-left: 0px;//-12px;
+    /* ページタイトル下線の幅 */
+    --line-title-border-width: 2px;
+    
+    /* # 関連ページリスト・ページカード */
+    /* 関連ページリストのラベルのホバー時の文字 */
+    --relation-label-text: hsl(180deg 0% 87%); /* 既定値 */
+    --relation-label-text-1: hsl(257deg 0% 70%);
+    --relation-label-text-p1: hsl(180deg 0% 47%);
+    --relation-label-text-2: hsl(218deg 0% 61%);
+    --relation-label-text-empty: hsl(9deg 0% 73%);
+    /* 関連ページリストのページカードの背景 */
+    --relation-page-bg: hsl(0deg 0% 100% / 7%); /* 既定値 */
+    --relation-page-bg-1: hsl(257deg 0% 40%);
+    --relation-page-bg-p1: hsl(180deg 0% 27%);
+    --relation-page-bg-2: hsl(218deg 0% 38%);
+    --relation-page-bg-empty: hsl(9deg 0% 51%);
+    --card-bg: var(--relation-page-bg);
+    /* 関連ページリストのページカードの線 */
+    --relation-page-border-color: hsl(0deg 0% 100% / 50%);
+    
+}
+
+/* # 関連ページリストを右側に持ってくるやつの専用設定 */
+@media (min-width: 768px) and (min-height: 768px) {
+    body, *::after, *::before {
+        /* ページ情報の大きさ */
+        // --page-info-height: 178px; // page-menu系のCSS側で設定している
+        --page-info-width: 250px;
+        /* ページメニューの背景 */
+        --page-menu-bg: var(--page-bg);
+        /* ページ情報とページメニューの間の色 */
+        --page-info-area-bg: hsl(265deg 7% 37% / 10%);
+        /* ページの最大幅 */
+        --page-max-width: calc(
+            var(--body-max-width)
+            - (var(--body-padding-horizon) * 2)
+            - var(--page-info-width)
+            - 20px /* どこから出た20pxなのかは謎 */
+        );
+        /*
+         * ページメニュー全体の高さ
+         * 自分のアイコンの数によって高さを変える */
+        --page-menu-height: calc(var(--page-info-height)
+          + (var(--page-menu-icon-size) * var(--page-menu-rows)));
+        /* ページメニューの角丸の深さ */
+        --page-menu-border-radius: 3px;
+        /* ページメニューのアイコンの数 */
+        --page-menu-columns: 4; /* 横並びの個数 */
+        --page-menu-rows: 1; /* 縦並びの個数 */
+        /* 関連ページリストのラベルのフォントサイズ */
+        --relation-label-font-size: 16px;
+        /* 関連ページリストのラベルの鎖アイコンの大きさ */
+        --relation-label-icon-size: 18px;
+        /* 関連ページリストの横側の空白 */
+        --relation-label-margin-left: 3px;
+    }
+}
