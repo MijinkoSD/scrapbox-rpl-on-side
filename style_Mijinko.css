@@ -1,0 +1,731 @@
+@charset "UTF-8";
+/* @use */
+/* @import */
+@import "/api/code/Mijinko/工事中の札を貼るUserCSS-B/style.css";
+/* 工事中でも最低限必要なCSSのみimportする */
+@import "/api/code/Mijinko/コードブロックの行番号を表示するUserCSS/style.css";
+/* 無いと見づらい */
+@import "/api/code/Mijinko/ピンしたページのスタイル/style.css";
+@import "/api/code/Mijinko/のびのびドロップダウン/style.css";
+@import '/api/code/Mijinko/インデントに縦線を表示するUserCSS/style.css';
+/* 記法関連 */
+@import "/api/code/Mijinko/見出しのデザインを変えるUserCSS/color.css";
+@import "/api/code/Mijinko/見出しのデザインを変えるUserCSS/style.css";
+@import "/api/code/Mijinko/警告記法/style.css";
+@import "/api/code/Mijinko/スポイラー記法/style.css";
+@import "/api/code/Mijinko/リンクにアイコンを付けるCSSを生成するスクリプト/style.css";
+@import "/api/code/Mijinko/箇条書きのバレットをFontAwesomeにするUserCSS/style.css";
+/* Noto Sans JPをダウンロードする */
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP";
+/* Font Awesome 6をダウンロードする */
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css";
+/* ページタイトル周りのレイアウトを調整する */
+body, *::after, *::before {
+  /* # 共通設定 */
+  /* ページ全体の背景 */
+  --body-bg: hsl(265deg 1% 18%); /*hsl(252deg 2% 18%);*/
+  /* ページ背景としては使用していないが、互換性のために残す */
+  --page-bg: var(--body-bg);
+  /* 全体の最大幅 */
+  --body-max-width: 1200px; /*【値変更非対応】*/
+  /* ページの横padding */
+  --body-padding-horizon: 8px; /*【値変更非対応】*/
+  /* ページ内のフォントサイズ */
+  --page-font-size: 15px;
+  /* デフォルトで設定されているフォント
+   * Font Awesomeを常時使えるようにするUserCSSから流用したもの */
+  --base-fonts: "Roboto",Helvetica,Arial,"Hiragino Sans","Font Awesome 6 Free","Font Awesome 6 Brands","AppIcons",sans-serif;
+  /* ページタイトルとかに使っているフォント */
+  --label-fonts: "Noto Sans JP", var(--base-fonts);
+  --animation-time: .3s;
+  /* # ナビゲーションバー */
+  /* 1行目の背景色 */
+  --navbar-bg: hsl(265deg 2% 23%); /*hsl(252deg 39% 60%); /*hsl(265deg 19% 20%);*/
+  /* 区切り線の色 */
+  --navbar-separator-color: hsl(265deg 91% 74%);
+  /* 区切り線の長さ */
+  --navbar-separator-width: 2px;
+  /* ナビゲーションバーの横margin */
+  --navbar-margin-horizon: 8px;
+  /* ナビゲーションバーの最小縦幅 */
+  --navbar-min-height: calc(var(--navbar-row-1-height) + var(--navbar-row-2-height));
+  /* ナビゲーションバーの最大縦幅 */
+  --navbar-max-height: var(--navbar-min-height); /* 変動しないのでminと同じ値 */
+  /* ナビゲーションバーの1行目の縦幅 */
+  --navbar-row-1-height: calc(40px + var(--navbar-separator-width)); /* デフォルト：40px */
+  --navbar-row-2-height: 40px;
+  /* 新規作成ボタンの色 */
+  --new-button-bg: hsl(341deg 69% 55%); /*hsl(350deg 80% 54%); /*hsl(350deg 77% 44%);*/
+  --new-button-hover-bg: hsl(341deg 77% 36%);
+  --new-button-active-bg: hsl(341deg 77% 32%);
+  /* 新規作成ボタンの大きさ */
+  --new-button-size: 32px;
+  /* 左上のロゴをホバーした時の影 */
+  --navbar-brand-hover-shadow: var(--navbar-separator-color);
+  /* 左上のロゴの隣の矢印の色 */
+  --navbar-icon-color: white;
+  --navbar-icon-active-color: var(--navbar-separator-color);
+  --navbar-icon-hovered-color: var(--navbar-separator-color);
+  /* # ツールバー */
+  /* ツールバーの高さ */
+  --tool-height: var(--navbar-row-1-height);
+  /* ツールバーの下マージン */
+  --tool-margin-bottom: calc((var(--navbar-max-height) - var(--navbar-row-1-height) - var(--tool-height)) / 2);
+  /* ツールバーの角丸の深さ */
+  --tool-border-radius: 3px;
+  /* プロジェクトタイトルのボタン色 */
+  --tool-bg: hsl(265deg 2% 24%); /*hsl(252deg 2% 24%); /*hsl(265deg 31% 34%); /* ホバーしていない時に使われる */
+  --tool-hover-bg: hsl(265deg 2% 31%); /*hsl(230deg 12% 40%); /* 元々は--tool-bgだった */
+  /* more page of の文字色 */
+  --tool-color: hsl(0deg 0% 100% / 71%);
+  /* プロジェクトタイトルと戻るボタンの間の線【不要】 */
+  --tool-separator-width: 1.5px;
+  --tool-separator-height: 18px;
+  --tool-separator-color: #0000002e;
+  /* # ページメニュー */
+  --page-menu-icon-size: 46px;
+  /* # ページ内部 */
+  /* ページ内の文字色 */
+  --page-text-color: hsl(0deg 0% 100% / 87%);
+  /* ページの横padding
+   * テロメアの位置調整も必要なので変数で管理する */
+  --page-padding-horizon: 30px; /* 元々は42px */
+  /* ページの上padding */
+  --page-padding-top: 21px; /* 元々は42px */
+  /* ページタイトルの左padding */
+  --line-title-margin-left: -12px;
+  /* ページタイトル下線の幅 */
+  --line-title-border-width: 2px;
+  /* ページタイトル下線の色 */
+  --line-title-border-color: var(--line-title-color, white);
+  /* テロメアの色 */
+  --telomere-border: hsl(224deg 8% 36%);
+  --telomere-unread: hsl(265deg 76% 71%);
+  --telomere-updated: hsl(265deg 92% 82%);
+  /* # 関連ページリスト・ページカード */
+  /* 関連ページリストのラベルのホバー時の文字 */
+  --relation-label-text: hsl(180deg 1% 87%); /* 既定値 */
+  --relation-label-text-1: hsl(257deg 39% 70%);
+  --relation-label-text-p1: hsl(180deg 55% 47%);
+  --relation-label-text-2: hsl(218deg 50% 61%);
+  --relation-label-text-empty: hsl(9deg 50% 73%);
+  /* 関連ページリストのページカードの背景 */
+  --relation-page-bg: hsl(0deg 0% 100% / 7%); /* 既定値 */
+  --relation-page-bg-1: hsl(257deg 39% 40%);
+  --relation-page-bg-p1: hsl(180deg 47% 27%);
+  --relation-page-bg-2: hsl(218deg 50% 38%);
+  --relation-page-bg-empty: hsl(9deg 56% 51%);
+  /* 関連ページリストのページカードの線 */
+  --relation-page-border-color: hsl(0deg 0% 100% / 50%);
+  /* ページカードの背景 */
+  --card-bg: var(--relation-page-bg);
+  /* ページカードの上の線 */
+  --card-title-bg: hsl(265deg 17% 46%);
+}
+
+/* # 関連ページリストを右側に持ってくるやつの専用設定 */
+@media (min-width: 768px) and (min-height: 768px) {
+  body, *::after, *::before {
+    /* ページ情報の大きさ */
+    --page-info-height: 178px;
+    --page-info-width: 250px;
+    /* ページメニューの背景 */
+    --page-menu-bg: var(--page-bg);
+    /* ページ情報とページメニューの間の色 */
+    --page-info-area-bg: hsl(265deg 7% 37% / 10%);
+    /* ページの最大幅 */
+    --page-max-width: calc(
+        var(--body-max-width)
+        - (var(--body-padding-horizon) * 2)
+        - var(--page-info-width)
+        - 20px /* どこから出た20pxなのかは謎 */
+    );
+    /*
+     * ページメニュー全体の高さ
+     * 自分のアイコンの数によって高さを変える */
+    --page-menu-height: calc(var(--page-info-height)
+      + (var(--page-menu-icon-size) * var(--page-menu-rows)));
+    /* ページメニューの角丸の深さ */
+    --page-menu-border-radius: 3px;
+    /* ページメニューのアイコンの数 */
+    --page-menu-columns: 4; /* 横並びの個数 */
+    --page-menu-rows: 1; /* 縦並びの個数 */
+    /* 関連ページリストのラベルのフォントサイズ */
+    --relation-label-font-size: 16px;
+    /* 関連ページリストのラベルの鎖アイコンの大きさ */
+    --relation-label-icon-size: 18px;
+    /* 関連ページリストの横側の空白 */
+    --relation-label-margin-left: 3px;
+  }
+}
+/* # 全体の調整 */
+div.app {
+  padding-top: var(--navbar-max-height);
+}
+
+/* # ナビゲーションバー */
+nav.navbar {
+  border-bottom-width: var(--navbar-row-2-height);
+  border-bottom-style: solid;
+  border-bottom-color: var(--tool-bg);
+  height: var(--navbar-row-1-height);
+  box-sizing: content-box;
+  background: linear-gradient(to bottom, var(--navbar-bg) calc(100% - var(--navbar-separator-width)), var(--navbar-separator-color) var(--navbar-separator-width));
+}
+
+.navbar .navbar-brand:hover .brand-icon {
+  filter: brightness(0.95) drop-shadow(0 0 3px var(--navbar-brand-hover-shadow));
+  transition: var(--animation-time);
+}
+.navbar .col-brand.dropdown > .dropdown-menu, .navbar .col-menu .dropdown > .dropdown-menu {
+  /* ドロップダウンメニュー */
+  top: var(--navbar-max-height);
+}
+.navbar .col-search .dropdown > .dropdown-menu {
+  /* 検索バーの検索候補リスト */
+  top: calc(var(--navbar-max-height) - 4px);
+}
+
+/* # システムメッセージ */
+.app > .container:has(.alert.alert-info) {
+  margin-top: calc(var(--navbar-row-1-height) + 1em);
+  /* レイヤーを手前にする */
+  z-index: 990; /* navbarより10下 */
+}
+.app > .container:has(.alert.alert-info) ~ .container[style], .app > .container:has(.alert.alert-info) ~ .row-flex {
+  /* メッセージより下に来る要素の位置を、適当に下にずらす */
+  margin-top: 100px;
+}
+
+/* # ツールバー */
+@media (min-width: 768px) and (min-height: 768px) {
+  .app > .container:not([style]) {
+    position: fixed;
+    top: var(--navbar-row-1-height);
+    left: calc(max(100% - var(--body-max-width), 0%) / 2);
+    padding: 0;
+    z-index: 1010; /* navbarより10上 */
+  }
+  div.quick-launch.layout-page {
+    /* ツールバーの余分な当たり判定を消す */
+    margin: 0;
+  }
+  .quick-launch .left-box .btn {
+    /* プロジェクトタイトルのボタン */
+    border-radius: 0;
+    background-color: transparent;
+    height: var(--tool-height);
+    min-height: inherit;
+  }
+  .quick-launch .left-box .btn:first-child {
+    border-radius: var(--tool-border-radius) 0 0 var(--tool-border-radius);
+  }
+  .quick-launch .left-box .btn:last-child {
+    border-radius: 0 var(--tool-border-radius) var(--tool-border-radius) 0;
+  }
+  .quick-launch .left-box .btn:first-child:last-child {
+    border-radius: var(--tool-border-radius);
+  }
+  .quick-launch .left-box .btn:hover {
+    /* プロジェクトタイトルのボタン（ホバー時） */
+    background-color: var(--tool-hover-bg);
+  }
+  .quick-launch .right-box .dropdown .btn {
+    border-radius: var(--tool-border-radius);
+  }
+  .quick-launch .right-box .dropdown .btn:hover, .quick-launch .right-box .dropdown .btn:active {
+    /* ツールバーの右側のボタン（ホバー時） */
+    background-color: var(--tool-hover-bg);
+  }
+}
+@media (max-width: 768px), (max-height: 768px) {
+  /* # スマホ版表示での設定 */
+  .quick-launch .new-button {
+    /* 新規作成ボタンを配置し直す */
+    position: fixed;
+    top: calc(var(--navbar-row-1-height) + (var(--navbar-row-1-height) - var(--new-button-size)) / 2);
+    right: 0;
+    margin: 0px var(--navbar-margin-horizon) 0 auto;
+    z-index: 1010; /* navbarより10上 */
+  }
+  .quick-launch .left-box {
+    /* スマホ幅では必要最低限のボタンのみ上に固定する */
+    position: fixed;
+    top: var(--navbar-row-1-height);
+    z-index: 1010; /* navbarより10上 */
+  }
+  .navbar .container .col .navbar-form {
+    /* 検索窓の位置調整をする */
+    margin-top: var(--navbar-row-1-height);
+  }
+  .navbar-menu .expandable-menu .dropdown-menu {
+    /* ナビゲーションバーに設置されたページメニューのドロップダウンメニューの座標を下にずらす */
+    top: calc(var(--navbar-max-height) + 0.5em) !important;
+  }
+}
+/* ページ情報を常時表示する */
+/* & 関連ページリストを右側に持ってくる */
+@media (min-width: 768px) and (min-height: 768px) {
+  /* # ページ情報を常時表示する */
+  .app > .row-flex {
+    /* ページの上端とページ情報の上端を合わせる */
+    padding-top: var(--page-padding-top);
+  }
+  div.page {
+    /* ページ上部に元々設定されていたpaddingを削除する */
+    padding-top: 0;
+    /* 最大幅を設定しないと、中の文章が外枠を突き破れてしまう */
+    max-width: var(--page-max-width);
+    /* 下に余白を作ってスクロール可能な幅を増やす */
+    margin-bottom: calc(100vh - var(--navbar-max-height) - 4em - 32px);
+  }
+  div.page-menu {
+    /* メニューボタンをグリッド状にする */
+    display: grid;
+    grid-auto-flow: row;
+    top: calc(var(--navbar-min-height) + 5px);
+    width: var(--page-info-width);
+    max-height: var(--page-menu-height);
+    grid-template-columns: repeat(var(--page-menu-columns), 1fr);
+    border-radius: var(--page-menu-border-radius);
+    background-color: var(--page-menu-bg);
+    box-shadow: 0px 0px 9px 0px black;
+  }
+  .page-menu > .dropdown {
+    /* ページメニューのボタン配置を中央揃えに */
+    align-self: center;
+    justify-self: center;
+  }
+  .page-menu > .random-jump-button {
+    /* ランダムボタンは個別に中央揃えにしないといけない */
+    margin: auto;
+  }
+  div.row-flex {
+    /* ページを左寄せにする */
+    margin: 0 auto;
+    padding: 0 8px;
+    max-width: 1200px;
+    justify-content: flex-start;
+  }
+  div.col-page {
+    /* ページ領域の幅 */
+    width: calc(100% - 20px - var(--page-info-width));
+  }
+  /* # 関連ページリストを右側に */
+  .page-wrapper {
+    /* ページとリンクをまとめているやつ */
+    display: flex;
+    flex-direction: row;
+  }
+  div.drag-and-drop-enter {
+    /* ページ本体が入っている要素 */
+    flex-basis: 100%;
+  }
+  div.related-page-list {
+    /* 関連ページリスト */
+    position: relative;
+    margin-top: calc(var(--page-menu-height) + 0.5em);
+    margin-right: -100%;
+    margin-left: 10px;
+    width: var(--page-info-width);
+  }
+  div.related-page-list ul.grid {
+    /* marginに負の値を設定されるのを防止する */
+    margin: calc(var(--relation-label-font-size) * 0.5) 0;
+  }
+  .related-page-list div.toolbar {
+    /* 関連ページリストのツールバー */
+    margin-top: 3px;
+    flex-direction: column;
+    height: auto;
+  }
+  .related-page-list div.toolbar .related-page-sort-menu {
+    /* ソートメニューを中央揃えに */
+    display: flex;
+    justify-content: center;
+  }
+  .related-page-list div.toolbar .related-page-sort-menu .tool-btn {
+    padding: 3px 10px 3px;
+  }
+  .related-page-list div.toolbar .related-page-list-search {
+    /* 関連ページリストの検索ボックス */
+    line-height: 2em;
+    border-radius: var(--page-menu-border-radius);
+    background-color: var(--search-form-bg);
+  }
+  .related-page-list div.toolbar .related-page-list-search i.fa {
+    /* 検索ボックスのアイコンの位置調整 */
+    margin-left: 3px;
+    margin-right: 2px;
+    width: var(--relation-label-icon-size);
+    height: var(--relation-label-icon-size);
+    line-height: var(--relation-label-icon-size);
+    text-align: center;
+  }
+  .related-page-list div.toolbar .related-page-list-search input {
+    /* 検索ボックスの入力文字の表示幅をギリギリまで伸ばす */
+    width: calc(var(--page-info-width) - var(--relation-label-icon-size) - 3px - 2px);
+  }
+  .related-page-list .grid li.relation-label {
+    /* 関連ページリストのラベル領域 */
+    width: 100%;
+    height: auto;
+    margin: 0 0 10px;
+  }
+  .related-page-list .grid li.relation-label .arrow {
+    /* 吹き出しの矢印は不要なので消す */
+    display: none;
+  }
+  .related-page-list .grid li.relation-label a {
+    /* 関連ページリストのラベルリンク */
+    padding: 0 calc(var(--relation-label-margin-left) * 2 + var(--relation-label-icon-size));
+    border-bottom: solid 1px var(--relation-label-text);
+    display: flex;
+    width: 100%;
+    border-radius: 0;
+    flex-direction: row-reverse;
+    justify-content: center;
+    color: var(--relation-label-text);
+    background-color: transparent;
+  }
+  .related-page-list .grid li.relation-label a .title {
+    /* ラベル文字 */
+    font-family: var(--label-fonts);
+    font-size: var(--relation-label-font-size);
+    line-height: 1.5em;
+  }
+  .related-page-list .grid li.relation-label a .icon-lg {
+    /* ラベルの鎖アイコン  */
+    position: absolute;
+    left: 3px;
+    margin: 0;
+    font-size: var(--relation-label-icon-size);
+    width: 1em;
+    height: 1.5em;
+    line-height: 1.5em;
+    vertical-align: middle;
+  }
+  .related-page-list .grid > :not(.relation-label) {
+    /* 関連ページリストのラベル以外の要素 */
+    margin: 0;
+    margin-bottom: 0.5em;
+    padding: 0 0.5em;
+    width: var(--page-info-width);
+    height: 6em;
+  }
+  .related-page-list .grid .page-list-item {
+    /* 関連ページリストのページリンク領域 */
+    height: 6em;
+  }
+  .related-page-list .grid .page-list-item a {
+    /* 関連ページリストのページリンク本体 */
+    width: auto;
+    background-color: var(--relation-page-bg);
+    border-radius: 0 0 3px 3px;
+    box-shadow: none;
+  }
+  .related-page-list .grid .page-list-item .header {
+    /* ページリンクのタイトル領域 */
+    padding-bottom: 3px;
+    border-top: none;
+    border-bottom: 1.5px solid var(--relation-page-border-color);
+    z-index: 1; /* アイコンより上にする */
+  }
+  .related-page-list .grid .page-list-item .description {
+    /* ページリンクの書き出し文 */
+    padding-top: 3px;
+  }
+  .related-page-list .grid .page-list-item .icon {
+    /* ページリンクのアイコン */
+    position: absolute;
+    padding: 1px;
+    margin-left: 25%;
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    opacity: 0.5;
+  }
+  .related-page-list .grid .page-list-item .icon::before {
+    /* アイコン画像をグラデーションで透過（風に）しようかと思ったけれどやめた */
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* content: ""; */
+    background: linear-gradient(273deg, transparent 0 15%, var(--body-bg) 75% 100%);
+  }
+  .related-page-list .grid .page-list-item .icon > img {
+    /* ページリンクのアイコン画像 */
+    margin: 0;
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    vertical-align: middle;
+  }
+  .related-page-list .grid .ellipsis {
+    /* 関連ページリストの3点ボタン */
+    margin: 0;
+    margin-bottom: 0.5em;
+    padding: 0 0.5em;
+    width: var(--page-info-width);
+    height: 3em;
+  }
+  .related-page-list .grid .ellipsis a {
+    padding: 0;
+  }
+  .related-page-list .grid .expand-stack {
+    /* 関連ページスタック */
+    height: 4em;
+    background-color: transparent;
+  }
+  .related-page-list .grid .expand-stack a {
+    background-color: var(--relation-page-bg);
+    border-radius: 0 0 3px 3px;
+  }
+  .related-page-list .grid .splitter.splitter {
+    /* 底に沈んでいる区切り線 */
+    /* プロパティのいじり方でどうとでもなるので消す */
+    display: none;
+  }
+  .related-page-list > div .grid:hover .page-list-item a, .related-page-list > div .grid:hover .page-list-item a:hover {
+    box-shadow: var(--card-box-hover-shadow);
+  }
+  .related-page-list > .links-1-hop .grid:hover .relation-label a > span {
+    color: var(--relation-label-text-1);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .links-1-hop .grid:hover :is(.page-list-item, .expand-stack) a {
+    /* 1 hop linkのページリンクの背景色 */
+    background-color: var(--relation-page-bg-1);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .project-links-1-hop .grid:hover .relation-label a > span {
+    color: var(--relation-label-text-p1);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .project-links-1-hop .grid:hover :is(.page-list-item, .expand-stack) a {
+    /* External linksのページリンクの背景色 */
+    background-color: var(--relation-page-bg-p1);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .links-2-hop .grid:hover .relation-label.relation-label a {
+    /* 元々あった設定を打ち消す */
+    color: var(--relation-label-text);
+    background-color: transparent;
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .links-2-hop .grid:hover .relation-label a > span {
+    color: var(--relation-label-text-2);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .links-2-hop .grid:hover :is(.page-list-item, .expand-stack) a {
+    /* 2 hop linkのページリンクの背景色 */
+    background-color: var(--relation-page-bg-2);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .empy-links .grid:hover .relation-label a > span, .related-page-list > .empty-links .grid:hover .relation-label a > span {
+    color: var(--relation-label-text-empty);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list > .empy-links .grid:hover :is(.page-list-item, .expand-stack) a, .related-page-list > .empty-links .grid:hover :is(.page-list-item, .expand-stack) a {
+    /* New Linksのページリンクの背景色 */
+    background-color: var(--relation-page-bg-empty);
+    transition: background-color var(--animation-time);
+  }
+  .related-page-list .grid:not(:hover) li.page-list-item a:hover {
+    box-shadow: none;
+  }
+}
+.app .page-list .grid {
+  /* ページリストをグリッド化する */
+  margin: 0;
+  display: grid;
+  width: inherit;
+  max-width: var(--body-max-width);
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+.app .page-list .grid .page-list-item {
+  margin: 0;
+  width: 100%;
+}
+.app .page-list .grid .page-list-item a {
+  border-radius: 2px;
+}
+.app .page-list .grid .page-list-item a .header {
+  border: none;
+}
+
+ul.grid li.page-list-item a {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (min-width: 768px) and (min-height: 768px) {
+  body, *::after, *::before {
+    --page-info-height: 178px;
+  }
+  .page-menu > .dropdown:nth-child(1) {
+    /* ページ情報の領域 */
+    grid-column: 1/calc(var(--page-menu-columns) + 1);
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    max-height: var(--page-info-height);
+    background-color: var(--page-info-area-bg);
+    border-radius: var(--page-menu-border-radius) var(--page-menu-border-radius) 0 0;
+  }
+  .page-menu [aria-labelledby=page-info-menu] {
+    /* ページ情報を常時表示する */
+    position: relative;
+    display: flex;
+    inset: auto;
+    width: var(--page-info-width);
+    max-height: var(--page-info-height);
+    border-radius: var(--page-menu-border-radius) var(--page-menu-border-radius) 0 0;
+    box-shadow: none;
+    z-index: auto;
+  }
+  .page-menu [aria-labelledby=page-info-menu] > :nth-child(2) {
+    /* ページ作成者の情報 */
+    /* 個人プロジェクトでは不要なので非表示にする */
+    display: none;
+  }
+  .page-menu > .dropdown:nth-child(2) {
+    /* ページメニューのボタンを2行目から配置する */
+    grid-row-start: 2;
+  }
+  .page-menu .dropdown:not(:first-child) ul.dropdown-menu-right {
+    /* ボタンを押した時のメニューの位置 */
+    top: 50px;
+    right: 0;
+  }
+  #page-info-menu {
+    /* ページ情報のボタンを非表示に */
+    display: none;
+  }
+}
+/* # トップページのページリスト */
+.app > .container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: var(--body-max-width);
+}
+.app > .container .page-list {
+  margin-top: var(--page-padding-top);
+}
+
+/* # ページ周り */
+div.editor {
+  /* ページ内のフォントサイズを変数化する */
+  font-size: var(--page-font-size);
+}
+
+div.editor,
+.grid li,
+.stream {
+  /* 全体のフォント種類を変数化する */
+  font-family: var(--base-fonts);
+}
+
+.row-flex > .col-page-side {
+  /* ページ横の空白を消し飛ばす */
+  width: 0;
+}
+
+.page-menu .dropdown,
+.page-menu .dropdown .tool-btn {
+  /* アイコンの大きさを変数化する */
+  width: var(--page-menu-icon-size);
+  height: var(--page-menu-icon-size);
+}
+
+div.page-menu ul > li > div {
+  /* ページメニューの行の高さから小数が出ないようにする */
+  line-height: 20px;
+}
+
+/* # ナビゲーションバー */
+a.new-button {
+  /* 新規作成ボタンの大きさを変数化する */
+  width: var(--new-button-size);
+  height: var(--new-button-size);
+  border-radius: 50%;
+}
+a.new-button .horizontal-line {
+  width: calc(var(--new-button-size) * 11 / 16);
+  height: calc(var(--new-button-size) / 8);
+  border-radius: calc(var(--new-button-size) / 16);
+}
+a.new-button .vertical-line {
+  width: calc(var(--new-button-size) / 8);
+  height: calc(var(--new-button-size) * 11 / 16);
+  border-radius: calc(var(--new-button-size) / 16);
+}
+
+/* # 編集機能に関するもの */
+textarea.text-input.line-title {
+  /* タイトル行に入力中の文字 */
+  font-size: 1.9em;
+  font-weight: bold;
+  font-family: var(--label-fonts);
+}
+
+/* # ページ内部 */
+div.page {
+  box-shadow: none;
+  background-color: transparent;
+  /* ページのpaddingを半分にする（実験的） */
+  padding: var(--page-padding-top) var(--page-padding-horizon) 17px;
+}
+
+div.line.line-title {
+  /* ページタイトルの設定 */
+  margin-left: var(--line-title-margin-left);
+  font-size: 1.9em;
+  font-weight: bold;
+  font-family: var(--label-fonts);
+  /* ページタイトルから下線までの空白 */
+  padding-bottom: calc(var(--page-font-size) * 1);
+  /* ページタイトルの下線 */
+  border-bottom-width: var(--line-title-border-width);
+  border-bottom-style: solid;
+  border-bottom-color: var(--line-title-border-color);
+}
+div.line.line-title .text {
+  /* 元々設定されているpaddingを消す */
+  padding-bottom: 0;
+}
+div.line.line-title .telomere .telomere-border {
+  /* ページタイトルのテロメアの位置合わせ */
+  left: calc(-7px - var(--page-padding-horizon) - var(--line-title-margin-left));
+  /* ページタイトルのテロメアにできた隙間を埋める */
+  padding-bottom: var(--line-title-border-width);
+}
+div.line.line-title + .line {
+  /* タイトル行の下線の下の空白 */
+  padding-top: 2em;
+}
+
+.line .telomere div.telomere-border {
+  /* ページpaddingを調整したらテロメアの座標も調整しないといけなかった */
+  left: calc(-7px - var(--page-padding-horizon));
+  /* paddingにも背景色を塗るようにする */
+  box-sizing: content-box;
+}
+.line .text .indent-mark {
+  /* タイトル行直下のインデント座標がバグる不具合への対策 */
+  top: auto;
+}
+
+@media (max-width: 768px), (max-height: 768px) {
+  /* # スマホ版表示での設定 */
+  div.col-page {
+    padding: 0 15px 0 8px;
+  }
+}/*# sourceMappingURL=style_Mijinko.css.map */

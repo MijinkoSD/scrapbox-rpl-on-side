@@ -1,0 +1,138 @@
+// 
+// ナビゲーションバーとツールバーの設定
+// 
+
+
+/* # 全体の調整 */
+div.app {
+    padding-top: var(--navbar-max-height);
+}
+
+/* # ナビゲーションバー */
+nav.navbar {
+    border-bottom-width: var(--navbar-row-2-height);
+    border-bottom-style: solid;
+    border-bottom-color: var(--tool-bg);
+    height: var(--navbar-row-1-height);
+    box-sizing: content-box;
+    background: linear-gradient(
+        to bottom,
+        var(--navbar-bg) calc(100% - var(--navbar-separator-width)),
+        var(--navbar-separator-color) var(--navbar-separator-width),
+    );
+}
+.navbar {
+    .navbar-brand {
+        &:hover {
+            .brand-icon {
+                filter: brightness(.95) drop-shadow(0 0 3px var(--navbar-brand-hover-shadow));
+                transition: var(--animation-time);
+            }
+        }
+    }
+    & .col-brand.dropdown > .dropdown-menu,
+    & .col-menu .dropdown > .dropdown-menu {
+        /* ドロップダウンメニュー */
+        top: var(--navbar-max-height);
+    }
+    & .col-search .dropdown > .dropdown-menu {
+        /* 検索バーの検索候補リスト */
+        top: calc(var(--navbar-max-height) - 4px);
+    }
+}
+
+/* # システムメッセージ */
+.app > .container:has(.alert.alert-info) {
+    margin-top: calc(var(--navbar-row-1-height) + 1em);
+    /* レイヤーを手前にする */
+    z-index: 990; /* navbarより10下 */
+    & ~ .container[style],
+    & ~ .row-flex {
+        /* メッセージより下に来る要素の位置を、適当に下にずらす */
+        margin-top: 100px;
+    }
+}
+
+
+/* # ツールバー */
+@media (min-width: 768px) and (min-height: 768px) {
+    .app > .container:not([style]) {
+        position: fixed;
+        top: var(--navbar-row-1-height);
+        left: calc(max(100% - var(--body-max-width), 0%) / 2);
+        padding: 0;
+        z-index: 1010; /* navbarより10上 */
+    }
+    div.quick-launch.layout-page {
+        /* ツールバーの余分な当たり判定を消す */
+        margin: 0;
+    }
+    .quick-launch {
+        .left-box .btn {
+            /* プロジェクトタイトルのボタン */
+            border-radius: 0;
+            background-color: transparent;
+            height: var(--tool-height);
+            min-height: inherit;
+
+            &:first-child {
+                border-radius: var(--tool-border-radius) 0 0 var(--tool-border-radius);
+            }
+            &:last-child {
+                border-radius: 0 var(--tool-border-radius) var(--tool-border-radius) 0;
+            }
+            &:first-child:last-child {
+                border-radius: var(--tool-border-radius);
+            }
+            &:hover {
+                /* プロジェクトタイトルのボタン（ホバー時） */
+                background-color: var(--tool-hover-bg);
+            }
+        }
+        .right-box .dropdown {
+            .btn {
+                border-radius: var(--tool-border-radius);
+                &:hover,
+                &:active {
+                    /* ツールバーの右側のボタン（ホバー時） */
+                    background-color: var(--tool-hover-bg);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px), (max-height: 768px) {
+    /* # スマホ版表示での設定 */
+    .quick-launch {
+        .new-button {
+            /* 新規作成ボタンを配置し直す */
+            position: fixed;
+            top: calc(
+                var(--navbar-row-1-height)
+                + (var(--navbar-row-1-height) - var(--new-button-size)) / 2
+            );
+            right: 0;
+            margin: 0px var(--navbar-margin-horizon) 0 auto;
+            z-index: 1010; /* navbarより10上 */
+        }
+        .left-box {
+            /* スマホ幅では必要最低限のボタンのみ上に固定する */
+            position: fixed;
+            top: var(--navbar-row-1-height);
+            z-index: 1010; /* navbarより10上 */
+        }
+    }
+    .navbar .container .col .navbar-form {
+        /* 検索窓の位置調整をする */
+        margin-top: var(--navbar-row-1-height);
+    }
+    .navbar-menu {
+        .expandable-menu {
+            .dropdown-menu {
+                /* ナビゲーションバーに設置されたページメニューのドロップダウンメニューの座標を下にずらす */
+                top: calc(var(--navbar-max-height) + .5em) !important;
+            }
+        }
+    }
+}

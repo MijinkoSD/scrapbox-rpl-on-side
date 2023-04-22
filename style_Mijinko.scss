@@ -1,0 +1,149 @@
+/* @use */
+@use "./_values_Mijinko.scss";
+@use "./_navbar_Mijinko.scss";
+// @use "./x_sticky_navbar.scss";
+@use "./_related-page-list.scss";
+@use "./_page-list.scss";
+@use "./page-menu.scss";
+
+/* @import */
+@import "/api/code/Mijinko/工事中の札を貼るUserCSS-B/style.css";
+
+/* 工事中でも最低限必要なCSSのみimportする */
+@import "/api/code/Mijinko/コードブロックの行番号を表示するUserCSS/style.css";
+
+/* 無いと見づらい */
+@import "/api/code/Mijinko/ピンしたページのスタイル/style.css";
+@import "/api/code/Mijinko/のびのびドロップダウン/style.css";
+@import '/api/code/Mijinko/インデントに縦線を表示するUserCSS/style.css';
+
+/* 記法関連 */
+@import "/api/code/Mijinko/見出しのデザインを変えるUserCSS/color.css";
+@import "/api/code/Mijinko/見出しのデザインを変えるUserCSS/style.css";
+@import "/api/code/Mijinko/警告記法/style.css";
+@import "/api/code/Mijinko/スポイラー記法/style.css";
+@import "/api/code/Mijinko/リンクにアイコンを付けるCSSを生成するスクリプト/style.css";
+@import "/api/code/Mijinko/箇条書きのバレットをFontAwesomeにするUserCSS/style.css";
+
+/* Noto Sans JPをダウンロードする */
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP";
+/* Font Awesome 6をダウンロードする */
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css";
+
+
+/* # トップページのページリスト */   
+.app > .container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--body-max-width);
+    .page-list {
+        margin-top: var(--page-padding-top);
+    }
+}
+
+/* # ページ周り */
+div.editor {
+    /* ページ内のフォントサイズを変数化する */
+    font-size: var(--page-font-size);
+}
+div.editor,
+.grid li,
+.stream {
+    /* 全体のフォント種類を変数化する */
+    font-family: var(--base-fonts);
+}
+.row-flex > .col-page-side {
+    /* ページ横の空白を消し飛ばす */
+    width: 0;
+}
+.page-menu .dropdown,
+.page-menu .dropdown .tool-btn {
+    /* アイコンの大きさを変数化する */
+    width: var(--page-menu-icon-size);
+    height: var(--page-menu-icon-size);
+}
+div.page-menu ul > li > div {
+    /* ページメニューの行の高さから小数が出ないようにする */
+    line-height: 20px;
+}
+
+/* # ナビゲーションバー */
+a.new-button {
+    /* 新規作成ボタンの大きさを変数化する */
+    width: var(--new-button-size);
+    height: var(--new-button-size);
+    border-radius: 50%;
+    .horizontal-line {
+        width: calc(var(--new-button-size) * 11 / 16);
+        height: calc(var(--new-button-size) / 8);
+        border-radius: calc(var(--new-button-size) / 16);
+    }
+    .vertical-line {
+        width: calc(var(--new-button-size) / 8);
+        height: calc(var(--new-button-size) * 11 / 16);
+        border-radius: calc(var(--new-button-size) / 16);
+    }
+}
+
+/* # 編集機能に関するもの */
+textarea.text-input.line-title {
+    /* タイトル行に入力中の文字 */
+    font-size: 1.9em;
+    font-weight: bold;
+    font-family: var(--label-fonts);
+}
+
+/* # ページ内部 */
+div.page {
+    box-shadow: none;
+    background-color: transparent;
+    /* ページのpaddingを半分にする（実験的） */
+    padding: var(--page-padding-top) var(--page-padding-horizon) 17px;
+}
+div.line.line-title {
+    /* ページタイトルの設定 */
+    margin-left: var(--line-title-margin-left);
+    font-size: 1.9em;
+    font-weight: bold;
+    font-family: var(--label-fonts);
+    /* ページタイトルから下線までの空白 */
+    padding-bottom: calc(var(--page-font-size) * 1);
+    /* ページタイトルの下線 */
+    border-bottom-width: var(--line-title-border-width);
+    border-bottom-style: solid;
+    border-bottom-color: var(--line-title-border-color);
+    .text {
+        /* 元々設定されているpaddingを消す */
+        padding-bottom: 0;
+    }
+    .telomere .telomere-border {
+        /* ページタイトルのテロメアの位置合わせ */
+        left: calc(-49px + 42px - var(--page-padding-horizon) - var(--line-title-margin-left));
+        /* ページタイトルのテロメアにできた隙間を埋める */
+        padding-bottom: var(--line-title-border-width);
+    }
+    & + .line {
+        /* タイトル行の下線の下の空白 */
+        padding-top: 2em;
+    }
+}
+.line {
+    .telomere div.telomere-border {
+        /* ページpaddingを調整したらテロメアの座標も調整しないといけなかった */
+        left: calc(-49px + 42px - var(--page-padding-horizon));
+        /* paddingにも背景色を塗るようにする */
+        box-sizing: content-box;
+    }
+    .text .indent-mark {
+        /* タイトル行直下のインデント座標がバグる不具合への対策 */
+        top: auto;
+    }
+}
+
+@media (max-width: 768px), (max-height: 768px) {
+    /* # スマホ版表示での設定 */
+
+    div.col-page {
+        padding: 0 15px 0 8px;
+    }
+}
