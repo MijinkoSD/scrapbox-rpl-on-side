@@ -227,6 +227,8 @@
                     /* ページリンクのアイコン */
                     position: absolute;
                     padding: 1px;
+                    margin-left: 25%;
+                    width: 75%; // ここ変数化しても良い気がする
                     height: 100%;
                     display: flex;
                     flex-direction: row;
@@ -248,7 +250,7 @@
                 .icon > img {
                     /* ページリンクのアイコン画像 */
                     margin: 0;
-                    width: 75%;
+                    width: 100%;
                     height: fit-content;
                     vertical-align: middle;
                 }
