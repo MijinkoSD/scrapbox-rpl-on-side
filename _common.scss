@@ -1,0 +1,65 @@
+/* # ページ周り */
+div.editor {
+    /* ページ内のフォントサイズを変数化する */
+    font-size: var(--page-font-size);
+}
+div.editor,
+.grid li,
+.stream {
+    /* 全体のフォント種類を変数化する */
+    font-family: var(--base-fonts);
+}
+.row-flex > .col-page-side {
+    /* ページ横の空白を消し飛ばす */
+    width: 0;
+}
+.page-menu .dropdown,
+.page-menu .dropdown .tool-btn {
+    /* アイコンの大きさを変数化する */
+    width: var(--page-menu-icon-size);
+    height: var(--page-menu-icon-size);
+}
+div.page-menu ul > li > div {
+    /* ページメニューの行の高さから小数が出ないようにする */
+    line-height: 20px;
+}
+
+/* # ページ内部 */
+div.page {
+    box-shadow: none;
+    background-color: transparent;
+    /* ページのpaddingを半分にする（実験的） */
+    padding: var(--page-padding-top) var(--page-padding-horizon) 17px;
+}
+div.line.line-title {
+    /* ページタイトルの設定 */
+    margin-left: var(--line-title-margin-left);
+    .text {
+        /* 元々設定されているpaddingを消す */
+        padding-bottom: 0;
+    }
+    .telomere .telomere-border {
+        /* ページタイトルのテロメアの位置合わせ */
+        left: calc(-49px + 42px - var(--page-padding-horizon) - var(--line-title-margin-left));
+    }
+}
+.line {
+    .telomere div.telomere-border {
+        /* ページpaddingを調整したらテロメアの座標も調整しないといけなかった */
+        left: calc(-49px + 42px - var(--page-padding-horizon));
+        /* paddingにも背景色を塗るようにする */
+        box-sizing: content-box;
+    }
+    .text .indent-mark {
+        /* タイトル行直下のインデント座標がバグる不具合への対策 */
+        top: auto;
+    }
+}
+
+@media (max-width: 768px), (max-height: 768px) {
+    /* # スマホ版表示での設定 */
+
+    div.col-page {
+        padding: 0 15px 0 8px;
+    }
+}

@@ -1,10 +1,6 @@
 /* ページタイトル周りのレイアウトを調整する */
 body, *::after, *::before {
     /* # 共通設定 */
-    /* ページ全体の背景 */
-    --body-bg: hsl(265deg 1% 18%); /*hsl(252deg 2% 18%);*/
-    /* ページ背景としては使用していないが、互換性のために残す */
-    --page-bg: var(--body-bg);
     /* 全体の最大幅 */
     --body-max-width: 1200px; /*【値変更非対応】*/
     /* ページの横padding */
@@ -13,18 +9,14 @@ body, *::after, *::before {
     --page-font-size: 15px;
     /* デフォルトで設定されているフォント
      * Font Awesomeを常時使えるようにするUserCSSから流用したもの */
-    --base-fonts: "Roboto",Helvetica,Arial,"Hiragino Sans","Font Awesome 6 Free","Font Awesome 6 Brands","AppIcons",sans-serif;
+    --base-fonts: "Roboto",Helvetica,Arial,"Hiragino Sans","Font Awesome 6 Free","Font Awesome 5 Brands","AppIcons",sans-serif;
     /* ページタイトルとかに使っているフォント */
     --label-fonts: "Noto Sans JP", var(--base-fonts);
     --animation-time: .3s;
     
     /* # ナビゲーションバー */
-    /* 1行目の背景色 */
-    --navbar-bg: hsl(265deg 2% 23%); /*hsl(252deg 39% 60%); /*hsl(265deg 19% 20%);*/
-    /* 区切り線の色 */
-    --navbar-separator-color: hsl(265deg 91% 74%);
     /* 区切り線の長さ */
-    --navbar-separator-width: 2px;
+    --navbar-separator-width: 0px;
     /* ナビゲーションバーの横margin */
     --navbar-margin-horizon: 8px;
     /* ナビゲーションバーの最小縦幅 */
@@ -33,58 +25,22 @@ body, *::after, *::before {
     --navbar-max-height: var(--navbar-min-height); /* 変動しないのでminと同じ値 */
     /* ナビゲーションバーの1行目の縦幅 */
     --navbar-row-1-height: calc(40px + var(--navbar-separator-width)); ; /* デフォルト：40px */
-    --navbar-row-2-height: 40px;
-    /* 新規作成ボタンの色 */
-    --new-button-bg: hsl(341deg 69% 55%); /*hsl(350deg 80% 54%); /*hsl(350deg 77% 44%);*/
-    --new-button-hover-bg: hsl(341deg 77% 36%);
-    --new-button-active-bg: hsl(341deg 77% 32%);
-    /* 新規作成ボタンの大きさ */
-    --new-button-size: 32px;
-    /* 左上のロゴをホバーした時の影 */
-    --navbar-brand-hover-shadow: var(--navbar-separator-color);
-    /* 左上のロゴの隣の矢印の色 */
-    --navbar-icon-color: white;
-    --navbar-icon-active-color: var(--navbar-separator-color);
-    --navbar-icon-hovered-color: var(--navbar-separator-color);
+    --navbar-row-2-height: 0px;
     
-    /* # ツールバー */
-    /* ツールバーの高さ */
-    --tool-height: var(--navbar-row-1-height);
-    /* ツールバーの下マージン */
-    --tool-margin-bottom: calc((var(--navbar-max-height) - var(--navbar-row-1-height) - var(--tool-height)) / 2);
-    /* ツールバーの角丸の深さ */
-    --tool-border-radius: 3px;
-    /* プロジェクトタイトルのボタン色 */
-    --tool-bg: hsl(265deg 2% 24%); /*hsl(252deg 2% 24%); /*hsl(265deg 31% 34%); /* ホバーしていない時に使われる */
-    --tool-hover-bg: hsl(265deg 2% 31%);/*hsl(230deg 12% 40%); /* 元々は--tool-bgだった */
     /* more page of の文字色 */
     --tool-color: hsl(0deg 0% 100% / 71%);
-    /* プロジェクトタイトルと戻るボタンの間の線【不要】 */
-    --tool-separator-width: 1.5px;
-    --tool-separator-height: 18px;
-    --tool-separator-color: #0000002e;
     
     /* # ページメニュー */
     --page-menu-icon-size: 46px;
     
     /* # ページ内部 */
-    /* ページ内の文字色 */
-    --page-text-color: hsl(0deg 0% 100% / 87%);
     /* ページの横padding
      * テロメアの位置調整も必要なので変数で管理する */
     --page-padding-horizon: 30px; /* 元々は42px */
     /* ページの上padding */
     --page-padding-top: 21px; /* 元々は42px */
     /* ページタイトルの左padding */
-    --line-title-margin-left: -12px;
-    /* ページタイトル下線の幅 */
-    --line-title-border-width: 2px;
-    /* ページタイトル下線の色 */
-    --line-title-border-color: var(--line-title-color, white);
-    /* テロメアの色 */
-    --telomere-border: hsl(224deg 8% 36%);
-    --telomere-unread: hsl(265deg 76% 71%);
-    --telomere-updated: hsl(265deg 92% 82%);
+    --line-title-margin-left: 0px;//-12px;
     
     /* # 関連ページリスト・ページカード */
     /* 関連ページリストのラベルのホバー時の文字 */
@@ -101,10 +57,6 @@ body, *::after, *::before {
     --relation-page-bg-empty: hsl(9deg 56% 51%);
     /* 関連ページリストのページカードの線 */
     --relation-page-border-color: hsl(0deg 0% 100% / 50%);
-    /* ページカードの背景 */
-    --card-bg: var(--relation-page-bg);
-    /* ページカードの上の線 */
-    --card-title-bg: hsl(265deg 17% 46%);
     
 }
 
@@ -112,7 +64,7 @@ body, *::after, *::before {
 @media (min-width: 768px) and (min-height: 768px) {
     body, *::after, *::before {
         /* ページ情報の大きさ */
-        --page-info-height: 178px;
+        // --page-info-height: 178px; // page-menu系のCSS側で設定している
         --page-info-width: 250px;
         /* ページメニューの背景 */
         --page-menu-bg: var(--page-bg);

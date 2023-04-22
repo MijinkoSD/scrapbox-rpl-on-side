@@ -1,0 +1,45 @@
+@media (min-width: 768px) and (min-height: 768px) {
+    body, *::after, *::before {
+        --page-info-height: 178px;
+    }
+    .page-menu {
+        & > .dropdown:nth-child(1) {
+            /* ページ情報の領域 */
+            grid-column: 1 / calc(var(--page-menu-columns) + 1);
+            width: 100%;
+            height: fit-content;
+            max-height: var(--page-info-height);
+            background-color: var(--page-info-area-bg);
+            border-radius: var(--page-menu-border-radius) var(--page-menu-border-radius) 0 0;
+        }
+        [aria-labelledby="page-info-menu"] {
+            /* ページ情報を常時表示する */
+            position: relative;
+            display: flex;
+            inset: auto;
+            width: var(--page-info-width);
+            max-height: var(--page-info-height);
+            border-radius: var(--page-menu-border-radius) var(--page-menu-border-radius) 0 0;
+            box-shadow: none;
+            z-index: auto;
+            & > :nth-child(2) {
+                /* ページ作成者の情報 */
+                /* 個人プロジェクトでは不要なので非表示にする */
+                display: none;
+            }
+        }
+        & > .dropdown:nth-child(2) {
+            /* ページメニューのボタンを2行目から配置する */
+            grid-row-start: 2;
+        }
+        .dropdown:not(:first-child) ul.dropdown-menu-right {
+            /* ボタンを押した時のメニューの位置 */
+            top: 50px;
+            right: 0;
+        }
+    }
+    #page-info-menu {
+        /* ページ情報のボタンを非表示に */
+        display: none;
+    }
+}
