@@ -55,7 +55,7 @@ nav.navbar {
 
 
 /* # ツールバー */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
     .app > .container:not([style]) {
         position: fixed;
         top: var(--navbar-row-1-height);
@@ -102,7 +102,7 @@ nav.navbar {
     }
 }
 
-@media (max-width: 768px), (max-height: 768px) {
+@media (max-width: 768px), (max-height: 500px) {
     /* # スマホ版表示での設定 */
     .quick-launch {
         .new-button {

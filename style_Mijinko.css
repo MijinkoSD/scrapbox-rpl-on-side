@@ -124,7 +124,7 @@ body, *::after, *::before {
 }
 
 /* # 関連ページリストを右側に持ってくるやつの専用設定 */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   body, *::after, *::before {
     /* ページ情報の大きさ */
     --page-info-height: 178px;
@@ -198,7 +198,7 @@ nav.navbar {
 }
 
 /* # ツールバー */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   .app > .container:not([style]) {
     position: fixed;
     top: var(--navbar-row-1-height);
@@ -238,7 +238,7 @@ nav.navbar {
     background-color: var(--tool-hover-bg);
   }
 }
-@media (max-width: 768px), (max-height: 768px) {
+@media (max-width: 768px), (max-height: 500px) {
   /* # スマホ版表示での設定 */
   .quick-launch .new-button {
     /* 新規作成ボタンを配置し直す */
@@ -265,7 +265,7 @@ nav.navbar {
 }
 /* ページ情報を常時表示する */
 /* & 関連ページリストを右側に持ってくる */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   /* # ページ情報を常時表示する */
   .app > .row-flex {
     /* ページの上端とページ情報の上端を合わせる */
@@ -566,7 +566,7 @@ ul.grid li.page-list-item a {
   box-shadow: none;
 }
 
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   body, *::after, *::before {
     --page-info-height: 178px;
   }
@@ -723,7 +723,7 @@ div.line.line-title + .line {
   top: auto;
 }
 
-@media (max-width: 768px), (max-height: 768px) {
+@media (max-width: 768px), (max-height: 500px) {
   /* # スマホ版表示での設定 */
   div.col-page {
     padding: 0 15px 0 8px;
