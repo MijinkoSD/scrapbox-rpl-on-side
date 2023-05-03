@@ -61,7 +61,7 @@ body, *::after, *::before {
 }
 
 /* # 関連ページリストを右側に持ってくるやつの専用設定 */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   body, *::after, *::before {
     /* ページ情報の大きさ */
     --page-info-width: 250px;
@@ -156,7 +156,7 @@ div.line.line-title .telomere .telomere-border {
   top: auto;
 }
 
-@media (max-width: 768px), (max-height: 768px) {
+@media (max-width: 768px), (max-height: 500px) {
   /* # スマホ版表示での設定 */
   div.col-page {
     padding: 0 15px 0 8px;
@@ -174,7 +174,7 @@ div.line.line-title .telomere .telomere-border {
 }
 
 /* # ツールバー */
-@media (min-width: 768px), (min-height: 768px) {
+@media (min-width: 768px), (min-height: 500px) {
   .app > .container:not([style]) {
     width: calc(100% - var(--navbar-margin-horizon));
     max-width: var(--body-max-width);
@@ -187,7 +187,7 @@ div.line.line-title .telomere .telomere-border {
 }
 /* ページ情報を常時表示する */
 /* & 関連ページリストを右側に持ってくる */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   /* # ページ情報を常時表示する */
   .app > .row-flex {
     /* ページの上端とページ情報の上端を合わせる */
@@ -463,7 +463,7 @@ div.line.line-title .telomere .telomere-border {
     box-shadow: none;
   }
 }
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   body, *::after, *::before {
     --page-info-height: 0px;
   }
