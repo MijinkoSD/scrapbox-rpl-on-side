@@ -5,7 +5,7 @@
 
 /* ページ情報を常時表示する */
 /* & 関連ページリストを右側に持ってくる */
-@media (min-width: 768px) and (min-height: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
     /* # ページ情報を常時表示する */
     .app > .row-flex {
         /* ページの上端とページ情報の上端を合わせる */

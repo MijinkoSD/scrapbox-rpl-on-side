@@ -17,7 +17,7 @@
 
 
 /* # ツールバー */
-@media (min-width: 768px), (min-height: 768px) {
+@media (min-width: 768px), (min-height: 500px) {
     .app > .container:not([style]) {
         width: calc(100% - var(--navbar-margin-horizon));
         max-width: var(--body-max-width);
