@@ -11,7 +11,7 @@
         /* ページの上端とページ情報の上端を合わせる */
         padding-top: var(--page-padding-top);
     }
-    div.page {
+    .page:is(div, main) {
         /* ページ上部に元々設定されていたpaddingを削除する */
         padding-top: 0;
         /* 最大幅を設定しないと、中の文章が外枠を突き破れてしまう */
@@ -65,7 +65,7 @@
         /* ページ本体が入っている要素 */
         flex-basis: 100%;
     }
-    div.related-page-list {
+    .related-page-list:is(div, section) {
         /* 関連ページリスト */
         position: relative;
         margin-top: calc(var(--page-menu-height) + .5em);
