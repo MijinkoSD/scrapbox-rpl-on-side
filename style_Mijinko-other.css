@@ -128,7 +128,7 @@ div.page-menu ul > li > div {
 }
 
 /* # ページ内部 */
-div.page {
+.page:is(div, main) {
   box-shadow: none;
   background-color: transparent;
   /* ページのpaddingを半分にする（実験的） */
@@ -196,7 +196,7 @@ div.line.line-title .telomere .telomere-border {
     /* ページの上端とページ情報の上端を合わせる */
     padding-top: var(--page-padding-top);
   }
-  div.page {
+  .page:is(div, main) {
     /* ページ上部に元々設定されていたpaddingを削除する */
     padding-top: 0;
     /* 最大幅を設定しないと、中の文章が外枠を突き破れてしまう */
@@ -246,7 +246,7 @@ div.line.line-title .telomere .telomere-border {
     /* ページ本体が入っている要素 */
     flex-basis: 100%;
   }
-  div.related-page-list {
+  .related-page-list:is(div, section) {
     /* 関連ページリスト */
     position: relative;
     margin-top: calc(var(--page-menu-height) + 0.5em);
@@ -254,7 +254,7 @@ div.line.line-title .telomere .telomere-border {
     margin-left: 10px;
     width: var(--page-info-width);
   }
-  div.related-page-list ul.grid {
+  .related-page-list:is(div, section) ul.grid {
     /* marginに負の値を設定されるのを防止する */
     margin: calc(var(--relation-label-font-size) * 0.5) 0;
   }
