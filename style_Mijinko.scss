@@ -94,7 +94,7 @@ textarea.text-input.line-title {
 }
 
 /* # ページ内部 */
-div.page {
+.page:is(div, main) {
     box-shadow: none;
     background-color: transparent;
     /* ページのpaddingを半分にする（実験的） */
