@@ -173,6 +173,11 @@ div.line.line-title .telomere .telomere-border {
   box-sizing: content-box;
 }
 
+.app .navbar .row {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 /* # ツールバー */
 @media (min-width: 768px), (min-height: 500px) {
   .app > .container:not([style]) {
