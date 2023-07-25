@@ -4,20 +4,21 @@
 
 
 /* # 全体の調整 */
-.navbar > .container {
-    /* 原則ページの左端にラインを合わせるが、
-     * ウィンドウが狭くなった際にはウィンドウ端から8px離すようにする */
-    padding: 0;
-    width: calc(100% - (var(--navbar-margin-horizon) * 2));
-    & .navbar-brand {
-        box-sizing: content-box;
+.navbar {
+    > .container {
+        /* 原則ページの左端にラインを合わせるが、
+        * ウィンドウが狭くなった際にはウィンドウ端から8px離すようにする */
+        padding: 0;
+        width: calc(100% - (var(--navbar-margin-horizon) * 2));
+        & .navbar-brand {
+            box-sizing: content-box;
+        }
     }
 
-}
-
-.app .navbar .row {
-    margin: 0 auto;
-    max-width: 1200px;
+    .row {
+        margin: 0 auto;
+        max-width: 1200px;
+    }
 }
 
 
