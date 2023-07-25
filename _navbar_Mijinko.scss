@@ -21,7 +21,9 @@ nav.navbar {
         var(--navbar-separator-color) var(--navbar-separator-width),
     );
 }
-.navbar {
+.app .navbar {
+    padding-left: 0;
+
     .navbar-brand {
         &:hover {
             .brand-icon {
@@ -38,6 +40,11 @@ nav.navbar {
     & .col-search .dropdown > .dropdown-menu {
         /* 検索バーの検索候補リスト */
         top: calc(var(--navbar-max-height) - 4px);
+    }
+
+    .row {
+        margin: 0 auto;
+        max-width: 1200px;
     }
 }
 

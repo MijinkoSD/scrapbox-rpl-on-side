@@ -173,17 +173,24 @@ nav.navbar {
   background: linear-gradient(to bottom, var(--navbar-bg) calc(100% - var(--navbar-separator-width)), var(--navbar-separator-color) var(--navbar-separator-width));
 }
 
-.navbar .navbar-brand:hover .brand-icon {
+.app .navbar {
+  padding-left: 0;
+}
+.app .navbar .navbar-brand:hover .brand-icon {
   filter: brightness(0.95) drop-shadow(0 0 3px var(--navbar-brand-hover-shadow));
   transition: var(--animation-time);
 }
-.navbar .col-brand.dropdown > .dropdown-menu, .navbar .col-menu .dropdown > .dropdown-menu {
+.app .navbar .col-brand.dropdown > .dropdown-menu, .app .navbar .col-menu .dropdown > .dropdown-menu {
   /* ドロップダウンメニュー */
   top: var(--navbar-max-height);
 }
-.navbar .col-search .dropdown > .dropdown-menu {
+.app .navbar .col-search .dropdown > .dropdown-menu {
   /* 検索バーの検索候補リスト */
   top: calc(var(--navbar-max-height) - 4px);
+}
+.app .navbar .row {
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 /* # システムメッセージ */
