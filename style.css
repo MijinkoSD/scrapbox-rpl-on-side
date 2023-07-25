@@ -165,12 +165,16 @@ div.line.line-title .telomere .telomere-border {
 /* # 全体の調整 */
 .navbar > .container {
   /* 原則ページの左端にラインを合わせるが、
-   * ウィンドウが狭くなった際にはウィンドウ端から8px離すようにする */
+  * ウィンドウが狭くなった際にはウィンドウ端から8px離すようにする */
   padding: 0;
   width: calc(100% - var(--navbar-margin-horizon) * 2);
 }
 .navbar > .container .navbar-brand {
   box-sizing: content-box;
+}
+.navbar .row {
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 /* # ツールバー */
